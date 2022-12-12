@@ -1,13 +1,13 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {ChatHeader, Container} from '@components';
 
 type Props = {};
 
 const ChatScene = (_props: Props) => {
   return (
-    <View>
-      <Text>ChatScene</Text>
-    </View>
+    <Container>
+      <ChatHeader />
+    </Container>
   );
 };
 

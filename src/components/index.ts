@@ -1,5 +1,6 @@
 import ChatCell from './Chat/ChatCell';
+import ChatHeader from './Chat/ChatHeader';
 import Container from './Common/Container';
 import RoundImage from './Common/RoundImage';
 
-export {ChatCell, Container, RoundImage};
+export {ChatCell, ChatHeader, Container, RoundImage};

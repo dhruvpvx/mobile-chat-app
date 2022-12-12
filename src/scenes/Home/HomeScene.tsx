@@ -1,4 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {ChatCell, Container} from '@components';
 
@@ -13,5 +12,3 @@ const HomeScene = (_props: Props) => {
 };
 
 export default HomeScene;
-
-const styles = StyleSheet.create({});
