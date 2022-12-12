@@ -1,13 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {ChatCell, Container} from '@components';
 
 type Props = {};
 
 const HomeScene = (_props: Props) => {
   return (
-    <View>
-      <Text>HomeScene</Text>
-    </View>
+    <Container>
+      <ChatCell />
+    </Container>
   );
 };
 
