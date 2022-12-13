@@ -2,6 +2,7 @@ import ChatCell from './Chat/ChatCell';
 import ChatHeader from './Chat/ChatHeader';
 import ChatInput from './Chat/ChatInput';
 import ChatSection from './Chat/ChatSection';
+import AutoLink from './Common/AutoLink';
 import Box from './Common/Box';
 import Container from './Common/Container';
 import RoundImage from './Common/RoundImage';
@@ -16,4 +17,5 @@ export {
   ChatInput,
   MessageBar,
   Box,
+  AutoLink,
 };

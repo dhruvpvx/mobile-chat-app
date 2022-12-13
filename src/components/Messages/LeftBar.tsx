@@ -1,8 +1,9 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {useStylesheet} from '@hooks';
 import {AppFonts, AppSvg} from '@res';
 import {MessageType} from '@local-types';
+import AutoLink from '@components/Common/AutoLink';
 
 const LeftBar = (props: MessageType) => {
   const styles = useStylesheet('leftBar');
@@ -10,9 +11,9 @@ const LeftBar = (props: MessageType) => {
     <View style={styles.container}>
       <AppSvg.MessageTip left />
       <View style={styles.messageBarLeft}>
-        <Text selectable style={AppFonts.medium(15)}>
+        <AutoLink selectable style={AppFonts.medium(15)}>
           {props.message}
-        </Text>
+        </AutoLink>
       </View>
     </View>
   );

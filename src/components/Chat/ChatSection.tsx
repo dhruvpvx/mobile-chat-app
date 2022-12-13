@@ -9,13 +9,19 @@ type Props = {
 
 const ChatSection = (props: Props) => {
   const listRef = React.useRef<FlatList<MessageType>>(null);
+
+  const onContentSizeChange = () => {
+    setTimeout(() => {
+      listRef?.current?.scrollToEnd({animated: true});
+    }, 100);
+  };
+
   return (
     <Box flex={8}>
       <FlatList
         ref={listRef}
-        onContentSizeChange={() =>
-          listRef?.current?.scrollToEnd({animated: true})
-        }
+        onContentSizeChange={onContentSizeChange}
+        showsVerticalScrollIndicator={false}
         data={props.messages}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => <MessageBar {...item} />}
