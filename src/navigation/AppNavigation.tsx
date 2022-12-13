@@ -22,6 +22,7 @@ const AppNavigation = (_props: Props) => {
       )}
       <Stack.Screen name="Home" component={Scenes.HomeScene} />
       <Stack.Screen name="ChatScene" component={Scenes.ChatScene} />
+      <Stack.Screen name="EditProfile" component={Scenes.CreateProfile} />
     </Stack.Navigator>
   );
 };

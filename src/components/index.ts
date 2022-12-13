@@ -4,6 +4,7 @@ import ChatInput from './Chat/ChatInput';
 import ChatSection from './Chat/ChatSection';
 import AutoLink from './Common/AutoLink';
 import Box from './Common/Box';
+import Button from './Common/Button';
 import Container from './Common/Container';
 import RoundImage from './Common/RoundImage';
 import MessageBar from './Messages/MessageBar';
@@ -18,4 +19,5 @@ export {
   MessageBar,
   Box,
   AutoLink,
+  Button,
 };

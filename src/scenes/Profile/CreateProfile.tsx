@@ -1,18 +1,30 @@
-import {StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 import auth from '@react-native-firebase/auth';
-import {Container} from '@components';
+import {Button, Container} from '@components';
 import {AppColors, AppFonts} from '@res';
 
-interface Props {}
+interface Props {
+  navigation: any;
+  route: any;
+}
 
 const CreateProfile = (props: Props) => {
   const [name, setName] = React.useState('');
-
+  const [loading, setLoading] = React.useState(false);
+  const isEdit = props.route?.name === 'EditProfile';
   const createProfile = () => {
-    auth().currentUser?.updateProfile({
-      displayName: name,
-    });
+    setLoading(true);
+    auth()
+      .currentUser?.updateProfile({
+        displayName: name,
+      })
+      .then(() => {
+        if (isEdit) {
+          props.navigation.goBack();
+        }
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -23,11 +35,9 @@ const CreateProfile = (props: Props) => {
         onChangeText={setName}
         style={styles.input}
       />
-      <TouchableOpacity onPress={createProfile} style={styles.btn}>
-        <Text style={{...AppFonts.bold(16), color: AppColors.WHITE}}>
-          Create Profile
-        </Text>
-      </TouchableOpacity>
+      <Button loading={loading} onPress={createProfile}>
+        {isEdit ? 'Update' : 'Create'} Profile
+      </Button>
     </Container>
   );
 };
@@ -44,14 +54,5 @@ const styles = StyleSheet.create({
     borderColor: AppColors.BLACK_50,
     marginVertical: 10,
     ...AppFonts.regular(14),
-  },
-  btn: {
-    width: '70%',
-    aspectRatio: 5.5,
-    backgroundColor: AppColors.PRIMARY,
-    borderRadius: 10,
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
