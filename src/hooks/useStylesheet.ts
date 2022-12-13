@@ -8,11 +8,20 @@ type styles = {
     container: style;
     userNameContainer: style;
     userName: style;
+    header: style;
   };
   chatInput: {
     container: style;
     input: style;
     sendButton: style;
+  };
+  leftBar: {
+    container: style;
+    messageBarLeft: style;
+  };
+  rightBar: {
+    container: style;
+    messageBarRight: style;
   };
 };
 
@@ -66,6 +75,45 @@ const useStylesheet = (key: keyType) => {
         backgroundColor: AppColors.SEND_BUTTON,
         alignItems: 'center',
         justifyContent: 'center',
+      },
+    }),
+    leftBar: StyleSheet.create({
+      container: {
+        flexDirection: 'row',
+        alignSelf: 'flex-start',
+        maxWidth: '85%',
+        marginVertical: 10,
+      },
+      messageBarLeft: {
+        minWidth: '15%',
+        minHeight: 50,
+        marginLeft: -5,
+        justifyContent: 'center',
+        padding: '5%',
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        backgroundColor: AppColors.BLUISH_GREY,
+      },
+    }),
+    rightBar: StyleSheet.create({
+      container: {
+        flexDirection: 'row',
+        alignSelf: 'flex-end',
+        maxWidth: '85%',
+        marginVertical: 10,
+      },
+      messageBarRight: {
+        minWidth: '2%',
+        minHeight: 50,
+        alignSelf: 'flex-end',
+        marginRight: -5,
+        justifyContent: 'center',
+        padding: '5%',
+        borderTopLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        backgroundColor: AppColors.LIGHT_GREEEN,
       },
     }),
   };
