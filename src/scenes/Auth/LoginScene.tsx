@@ -1,13 +1,7 @@
-import {Container} from '@components';
+import {Button, Container} from '@components';
 import {AppColors, AppFonts, AppSvg} from '@res';
 import React from 'react';
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import EmailPassword, {EmailPasswordRef} from './EmailPassword';
 import auth from '@react-native-firebase/auth';
 
@@ -49,13 +43,9 @@ const LoginScene = (_props: Props) => {
       <View style={styles.errorView}>
         <Text style={AppFonts.regular(14, 'GOOGLE_RED')}>{error}</Text>
       </View>
-      <TouchableOpacity onPress={login} style={styles.loginBtn}>
-        {loading ? (
-          <ActivityIndicator size="small" color={'white'} />
-        ) : (
-          <Text style={AppFonts.extraBold(16, 'WHITE')}>Login</Text>
-        )}
-      </TouchableOpacity>
+      <Button onPress={login} loading={loading}>
+        Login
+      </Button>
       <TouchableOpacity style={styles.loginWithGoogle}>
         <AppSvg.GoogleSvg />
         <Text style={AppFonts.extraBold(16, 'WHITE')}>Login With Google</Text>
@@ -67,15 +57,6 @@ const LoginScene = (_props: Props) => {
 export default LoginScene;
 
 const styles = StyleSheet.create({
-  loginBtn: {
-    width: '70%',
-    aspectRatio: 5.4,
-    borderRadius: 15,
-    marginVertical: '5%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: AppColors.PRIMARY,
-  },
   errorView: {
     width: '70%',
     textAlign: 'center',

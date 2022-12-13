@@ -10,7 +10,8 @@ interface Props {
 }
 
 const CreateProfile = (props: Props) => {
-  const [name, setName] = React.useState('');
+  const userName = auth().currentUser?.displayName;
+  const [name, setName] = React.useState(userName || '');
   const [loading, setLoading] = React.useState(false);
   const isEdit = props.route?.name === 'EditProfile';
   const createProfile = () => {
