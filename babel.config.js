@@ -11,6 +11,7 @@ module.exports = {
           '@scenes': './src/scenes',
           '@navigation': './src/navigation',
           '@res': './src/res',
+          '@hooks': './src/hooks',
         },
       },
     ],

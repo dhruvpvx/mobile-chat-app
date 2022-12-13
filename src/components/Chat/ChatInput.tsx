@@ -1,7 +1,7 @@
 import {TextInput, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {AppSvg} from '@res';
-import {useStylesheet} from '@components/hooks';
+import {useStylesheet} from '@hooks';
 
 type Props = {};
 

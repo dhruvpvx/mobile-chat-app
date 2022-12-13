@@ -1,9 +1,10 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 import {AppFonts, AppSvg} from '@res';
-import {useStylesheet} from '@components/hooks';
+
 import {RoundImage} from '@components';
 import {useNavigation} from '@react-navigation/native';
+import {useStylesheet} from '@hooks';
 
 type Props = {};
 
