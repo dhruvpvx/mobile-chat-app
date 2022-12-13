@@ -4,11 +4,13 @@ import React from 'react';
 type Props = {
   children: React.ReactNode;
   style?: ViewStyle;
+  center?: boolean;
 } & ViewProps;
 
 const Container = (props: Props) => {
+  const style = [styles.container, props.style, props.center && styles.center];
   return (
-    <View style={[styles.container, props.style]} {...props}>
+    <View style={style} {...props}>
       {props.children}
     </View>
   );
@@ -20,5 +22,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

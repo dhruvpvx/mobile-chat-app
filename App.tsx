@@ -3,16 +3,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import auth from '@react-native-firebase/auth';
-
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import Scenes from '@scenes';
 
 interface Props {}
 
 const App = (_props: Props) => {
   const [isUser, setIsUser] = React.useState<boolean>(false);
+
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
@@ -23,11 +24,12 @@ const App = (_props: Props) => {
     });
     return subscriber; // unsubscribe on unmount
   }, []);
+
   return (
     <SafeAreaProvider>
       <StatusBar />
       <NavigationContainer>
-        <AppNavigation />
+        {isUser ? <AppNavigation /> : <Scenes.LoginScene />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
