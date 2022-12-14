@@ -1,12 +1,12 @@
-import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import {AppFonts, AppSvg} from '@res';
+import {useAppSelector} from '@store';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 interface Props {}
 
-const HomeHeader = (props: Props) => {
-  const name = auth().currentUser?.displayName;
+const HomeHeader = (_props: Props) => {
+  const user = useAppSelector(state => state.user);
   const navigation = useNavigation<any>();
 
   const onProfilePress = () => {
@@ -16,7 +16,7 @@ const HomeHeader = (props: Props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={AppFonts.medium(15)}>Hello {name || 'User'},</Text>
+        <Text style={AppFonts.medium(15)}>Hello {user.name || 'User'},</Text>
         <Text style={AppFonts.bold(20)}>Mobile Chat App.</Text>
       </View>
       <TouchableOpacity onPress={onProfilePress} style={styles.profileIcon}>

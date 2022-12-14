@@ -4,6 +4,8 @@ import auth from '@react-native-firebase/auth';
 import db from '@react-native-firebase/database';
 import {Button, Container} from '@components';
 import {AppColors, AppFonts} from '@res';
+import {useAppDispatch, useAppSelector} from '@store';
+import Actions from '@store/Actions';
 
 interface Props {
   navigation: any;
@@ -11,11 +13,12 @@ interface Props {
 }
 
 const CreateProfile = (props: Props) => {
-  const userName = auth().currentUser?.displayName;
-  const [name, setName] = React.useState(userName || '');
-  const [email, setEmail] = React.useState('');
-  const [gender, setGender] = React.useState('');
+  const userData = useAppSelector(state => state.user);
+  const [name, setName] = React.useState(userData.name || '');
+  const [email, setEmail] = React.useState(userData.email || '');
+  const [gender, setGender] = React.useState(userData.gender || '');
   const [loading, setLoading] = React.useState(false);
+  const dispatch = useAppDispatch();
   const isEdit = props.route?.name === 'EditProfile';
 
   const createProfile = () => {
@@ -25,13 +28,16 @@ const CreateProfile = (props: Props) => {
       return;
     }
     const ref = db().ref(`/users/${user.uid}`);
+    const newData = {
+      name,
+      email,
+      gender,
+      id: user.uid,
+    };
     ref
-      .set({
-        name,
-        email,
-        gender,
-      })
+      .set(newData)
       .then(() => {
+        dispatch(Actions.setUser(newData));
         if (isEdit) {
           props.navigation.goBack();
         }

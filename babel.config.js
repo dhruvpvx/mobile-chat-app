@@ -12,6 +12,8 @@ module.exports = {
           '@navigation': './src/navigation',
           '@res': './src/res',
           '@hooks': './src/hooks',
+          '@store': './src/store',
+          '@firebase': './src/firebase',
         },
       },
     ],

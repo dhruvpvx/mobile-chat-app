@@ -8,28 +8,43 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import Scenes from '@scenes';
+import {useAppDispatch, useAppSelector} from '@store';
+import Actions from '@store/Actions';
+import firebase from '@firebase';
 
 interface Props {}
 
 const App = (_props: Props) => {
-  const [isUser, setIsUser] = React.useState<boolean>(false);
+  const userData = useAppSelector(state => state.user);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
-        setIsUser(true);
-      } else {
-        setIsUser(false);
+        const id = user.uid;
+        const data = firebase.getUser(id);
+        data
+          .then(async res => {
+            if (res.id) {
+              dispatch(Actions.setUser(res));
+            } else {
+              await firebase.updateProfile(id, {...res, id});
+              dispatch(Actions.setUser({...res, id}));
+            }
+          })
+          .catch(err => {
+            console.log('err', err);
+          });
       }
     });
     return subscriber; // unsubscribe on unmount
-  }, []);
+  }, [dispatch]);
 
   return (
     <SafeAreaProvider>
       <StatusBar />
       <NavigationContainer>
-        {isUser ? <AppNavigation /> : <Scenes.LoginScene />}
+        {userData.id ? <AppNavigation /> : <Scenes.LoginScene />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
