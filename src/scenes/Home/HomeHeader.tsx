@@ -1,3 +1,4 @@
+import {RoundImage} from '@components';
 import {useNavigation} from '@react-navigation/native';
 import {AppFonts, AppSvg} from '@res';
 import {useAppSelector} from '@store';
@@ -20,7 +21,11 @@ const HomeHeader = (_props: Props) => {
         <Text style={AppFonts.bold(20)}>Mobile Chat App.</Text>
       </View>
       <TouchableOpacity onPress={onProfilePress} style={styles.profileIcon}>
-        <AppSvg.ProfileIcon />
+        {user?.image_url ? (
+          <RoundImage size={100} source={{uri: user?.image_url}} />
+        ) : (
+          <AppSvg.ProfileIcon />
+        )}
       </TouchableOpacity>
     </View>
   );

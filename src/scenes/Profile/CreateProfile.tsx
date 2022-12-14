@@ -2,7 +2,7 @@ import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import db from '@react-native-firebase/database';
-import {Button, Container} from '@components';
+import {Button, Container, UserImageView} from '@components';
 import {AppColors, AppFonts} from '@res';
 import {useAppDispatch, useAppSelector} from '@store';
 import Actions from '@store/Actions';
@@ -50,6 +50,7 @@ const CreateProfile = (props: Props) => {
 
   return (
     <Container center>
+      <UserImageView />
       <TextInput
         placeholder="Name"
         value={name}

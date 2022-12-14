@@ -8,6 +8,7 @@ import Button from './Common/Button';
 import Container from './Common/Container';
 import RoundImage from './Common/RoundImage';
 import MessageBar from './Messages/MessageBar';
+import UserImageView from './Profile/UserImageView';
 
 export {
   ChatCell,
@@ -20,4 +21,5 @@ export {
   Box,
   AutoLink,
   Button,
+  UserImageView,
 };

@@ -8,6 +8,7 @@ export interface UserState {
   email: string;
   gender: string;
   id: string;
+  image_url?: string;
 }
 
 const initialState: UserState = {
@@ -26,6 +27,7 @@ export const userSlice = createSlice({
       state.email = action.payload.email;
       state.id = action.payload.id;
       state.gender = action.payload.gender;
+      state.image_url = action.payload.image_url;
     },
   },
 });
