@@ -1,6 +1,7 @@
 import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 import auth from '@react-native-firebase/auth';
+import db from '@react-native-firebase/database';
 import {Button, Container} from '@components';
 import {AppColors, AppFonts} from '@res';
 
@@ -12,18 +13,31 @@ interface Props {
 const CreateProfile = (props: Props) => {
   const userName = auth().currentUser?.displayName;
   const [name, setName] = React.useState(userName || '');
+  const [email, setEmail] = React.useState('');
+  const [gender, setGender] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const isEdit = props.route?.name === 'EditProfile';
+
   const createProfile = () => {
     setLoading(true);
-    auth()
-      .currentUser?.updateProfile({
-        displayName: name,
+    const user = auth().currentUser;
+    if (!user) {
+      return;
+    }
+    const ref = db().ref(`/users/${user.uid}`);
+    ref
+      .set({
+        name,
+        email,
+        gender,
       })
       .then(() => {
         if (isEdit) {
           props.navigation.goBack();
         }
+      })
+      .catch(error => {
+        console.log({error});
       })
       .finally(() => setLoading(false));
   };
@@ -34,6 +48,18 @@ const CreateProfile = (props: Props) => {
         placeholder="Name"
         value={name}
         onChangeText={setName}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Gender"
+        value={gender}
+        onChangeText={setGender}
         style={styles.input}
       />
       <Button loading={loading} onPress={createProfile}>
