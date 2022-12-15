@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {ChatCell, Container} from '@components';
 import HomeHeader from './HomeHeader';
 import db from '@react-native-firebase/database';
@@ -11,32 +11,46 @@ type Props = {};
 const HomeScene = (_props: Props) => {
   const userData = useAppSelector(state => state.user);
   const [chatUsers, setChatUsers] = React.useState<UserState[]>([]);
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const loadUsers = useCallback(() => {
-    setRefreshing(true);
-    db()
-      .ref('/users')
-      .once('value')
-      .then(snapshot => {
-        const users: UserState[] = snapshot.val();
-        setChatUsers(
-          Object.values(users).filter(user => user.id !== userData.id),
-        );
-      })
-      .finally(() => setRefreshing(false));
-  }, [userData]);
 
   React.useEffect(() => {
-    loadUsers();
-  }, [loadUsers]);
+    const onValueChange = db()
+      .ref(`messages/${userData.id}`)
+      .on('value', snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          Object.keys(data).forEach(key => {
+            const userMessages = data[key];
+            db()
+              .ref(`users/${key}`)
+              .once('value', userSnapshot => {
+                const user = userSnapshot.val();
+                if (user) {
+                  const userObj = {
+                    ...user,
+                    id: key,
+                    lastMessage: userMessages[Object.keys(userMessages)[0]],
+                  };
+                  setChatUsers(prev =>
+                    prev.some(item => item.id === userObj.id)
+                      ? prev.map(item =>
+                          item.id === userObj.id ? userObj : item,
+                        )
+                      : [...prev, userObj],
+                  );
+                }
+              });
+          });
+        }
+      });
+
+    return () =>
+      db().ref(`messages/${userData.id}`).off('value', onValueChange);
+  }, [userData]);
 
   return (
     <Container>
       <HomeHeader />
       <FlatList
-        refreshing={refreshing && chatUsers.length === 0}
-        onRefresh={loadUsers}
         data={chatUsers}
         renderItem={({item}) => <ChatCell {...item} />}
       />

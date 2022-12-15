@@ -17,6 +17,7 @@ const ChatCell = (props: UserState) => {
       <RoundImage size={20} source={{uri: props.image_url}} />
       <View style={styles.userDetailsContainer}>
         <Text style={AppFonts.semiBold(16)}>{props.name}</Text>
+        <Text style={AppFonts.semiBold(16)}>{props.lastMessage.message}</Text>
       </View>
     </TouchableOpacity>
   );
