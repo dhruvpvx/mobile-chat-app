@@ -4,6 +4,7 @@ import SendIcon from './SendIcon';
 import MessageTip from './MessageTip';
 import GoogleSvg from './GoogleSvg';
 import ProfileIcon from './ProfileIcon';
+import BackIcon from './BackIcon';
 
 export default {
   BackArrow,
@@ -12,4 +13,5 @@ export default {
   MessageTip,
   GoogleSvg,
   ProfileIcon,
+  BackIcon,
 };

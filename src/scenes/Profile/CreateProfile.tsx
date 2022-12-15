@@ -2,7 +2,7 @@ import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import db from '@react-native-firebase/database';
-import {Button, Container, UserImageView} from '@components';
+import {Button, Container, Header, UserImageView} from '@components';
 import {AppColors, AppFonts} from '@res';
 import {useAppDispatch, useAppSelector} from '@store';
 import Actions from '@store/Actions';
@@ -49,29 +49,32 @@ const CreateProfile = (props: Props) => {
   };
 
   return (
-    <Container center>
-      <UserImageView />
-      <TextInput
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Gender"
-        value={gender}
-        onChangeText={setGender}
-        style={styles.input}
-      />
-      <Button loading={loading} onPress={createProfile}>
-        {isEdit ? 'Update' : 'Create'} Profile
-      </Button>
+    <Container>
+      <Header title="Edit Profile" />
+      <Container center>
+        <UserImageView />
+        <TextInput
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Gender"
+          value={gender}
+          onChangeText={setGender}
+          style={styles.input}
+        />
+        <Button loading={loading} onPress={createProfile}>
+          {isEdit ? 'Update' : 'Create'} Profile
+        </Button>
+      </Container>
     </Container>
   );
 };

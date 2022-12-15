@@ -6,6 +6,7 @@ import AutoLink from './Common/AutoLink';
 import Box from './Common/Box';
 import Button from './Common/Button';
 import Container from './Common/Container';
+import Header from './Common/Header';
 import RoundImage from './Common/RoundImage';
 import MessageBar from './Messages/MessageBar';
 import UserImageView from './Profile/UserImageView';
@@ -22,4 +23,5 @@ export {
   AutoLink,
   Button,
   UserImageView,
+  Header,
 };
