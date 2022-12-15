@@ -1,17 +1,21 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {AppFonts, AppSvg} from '@res';
-import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   title: string;
+  navigation?: any;
 };
 
 const Header = (props: Props) => {
-  const {goBack} = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <AppSvg.BackIcon onPress={goBack} style={styles.backIcon} />
+      {!!props.navigation && (
+        <AppSvg.BackIcon
+          onPress={props.navigation.goBack}
+          style={styles.backIcon}
+        />
+      )}
       <View style={styles.titleView}>
         <Text style={AppFonts.semiBold(16)}>{props.title}</Text>
       </View>

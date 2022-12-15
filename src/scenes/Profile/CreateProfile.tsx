@@ -50,7 +50,10 @@ const CreateProfile = (props: Props) => {
 
   return (
     <Container>
-      <Header title="Edit Profile" />
+      <Header
+        navigation={isEdit && props.navigation}
+        title={isEdit ? 'Edit Profile' : 'Create Profile'}
+      />
       <Container center>
         <UserImageView />
         <TextInput
