@@ -16,11 +16,11 @@ const AutoLink = (props: Props) => {
           key={word}
           onPress={() => Linking.openURL(word.toLowerCase())}
           style={[styles.linkStyle, props.linkStyle]}>
-          {word.toLowerCase()}
+          {word.toLowerCase() + ' '}
         </Text>
       );
     }
-    return word;
+    return word + ' ';
   });
   return <Text {...props}>{allWordsWithLinks}</Text>;
 };
