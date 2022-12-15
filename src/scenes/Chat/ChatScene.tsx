@@ -16,6 +16,12 @@ const ChatScene = (props: Props) => {
   const userId = auth().currentUser?.uid;
 
   const onSend = (text: string) => {
+    const isClear = text.trim().toLowerCase().startsWith('clear');
+    if (isClear) {
+      database().ref(`messages/${userId}/${otherUserId}`).remove();
+      database().ref(`messages/${otherUserId}/${userId}`).remove();
+      return setMessages([]);
+    }
     const message = {
       message: text,
       createdAt: new Date(),
