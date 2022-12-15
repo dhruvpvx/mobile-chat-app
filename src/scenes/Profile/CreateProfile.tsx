@@ -33,6 +33,7 @@ const CreateProfile = (props: Props) => {
       email,
       gender,
       id: user.uid,
+      image_url: userData.image_url,
     };
     ref
       .set(newData)
