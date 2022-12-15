@@ -4,10 +4,9 @@ import {AppFonts, AppSvg} from '@res';
 import {RoundImage, Box} from '@components';
 import {useNavigation} from '@react-navigation/native';
 import {useStylesheet} from '@hooks';
+import {UserState} from '@store/Slices/UserSlice';
 
-type Props = {};
-
-const ChatHeader = (_props: Props) => {
+const ChatHeader = (props: UserState) => {
   const styles = useStylesheet('chatHeader');
   const {goBack} = useNavigation<any>();
 
@@ -15,9 +14,9 @@ const ChatHeader = (_props: Props) => {
     <Box flex={1}>
       <View style={styles.container}>
         <AppSvg.BackArrow onPress={goBack} />
-        <RoundImage size={15} source={{uri: 'https://picsum.photos/200/300'}} />
+        <RoundImage size={15} source={{uri: props.image_url}} />
         <View style={styles.userNameContainer}>
-          <Text style={AppFonts.bold(20)}>Jon Doe</Text>
+          <Text style={AppFonts.bold(20)}>{props.name}</Text>
         </View>
         <AppSvg.ThreeDot />
       </View>

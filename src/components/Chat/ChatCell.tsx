@@ -2,20 +2,21 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {RoundImage} from '@components';
 import {useNavigation} from '@react-navigation/native';
+import {UserState} from '@store/Slices/UserSlice';
+import {AppFonts} from '@res';
 
-type Props = {};
-
-const ChatCell = (_props: Props) => {
+const ChatCell = (props: UserState) => {
   const navigation = useNavigation<any>();
+
   const onPress = () => {
-    navigation.navigate('ChatScene');
+    navigation.navigate('ChatScene', props);
   };
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <RoundImage size={20} source={{uri: 'https://picsum.photos/200/300'}} />
+      <RoundImage size={20} source={{uri: props.image_url}} />
       <View style={styles.userDetailsContainer}>
-        <Text>Username</Text>
-        <Text>Message</Text>
+        <Text style={AppFonts.semiBold(16)}>{props.name}</Text>
       </View>
     </TouchableOpacity>
   );
