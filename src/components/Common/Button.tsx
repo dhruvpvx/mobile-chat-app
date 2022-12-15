@@ -12,11 +12,16 @@ type Props = {
   children: any;
   titleStyle?: TextStyle;
   loading?: boolean;
+  danger?: boolean;
 } & React.ComponentProps<typeof TouchableOpacity>;
 
 const Button = (props: Props) => {
+  const style = [
+    styles.btn,
+    props.danger && {backgroundColor: AppColors.GOOGLE_RED},
+  ];
   return (
-    <TouchableOpacity {...props} style={styles.btn}>
+    <TouchableOpacity {...props} style={style}>
       {props?.loading ? (
         <ActivityIndicator size="small" color={AppColors.WHITE} />
       ) : (

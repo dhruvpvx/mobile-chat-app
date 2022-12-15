@@ -25,7 +25,7 @@ const App = (_props: Props) => {
         const data = firebase.getUser(id);
         data
           .then(async res => {
-            if (res.id) {
+            if (res?.id) {
               dispatch(Actions.setUser(res));
             } else {
               await firebase.updateProfile(id, {...res, id});
@@ -35,6 +35,15 @@ const App = (_props: Props) => {
           .catch(err => {
             console.log('err', err);
           });
+      } else {
+        dispatch(
+          Actions.setUser({
+            id: '',
+            name: '',
+            email: '',
+            gender: '',
+          }),
+        );
       }
     });
     return subscriber; // unsubscribe on unmount

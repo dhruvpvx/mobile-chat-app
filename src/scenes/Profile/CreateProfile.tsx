@@ -78,6 +78,11 @@ const CreateProfile = (props: Props) => {
         <Button loading={loading} onPress={createProfile}>
           {isEdit ? 'Update' : 'Create'} Profile
         </Button>
+        {isEdit && (
+          <Button danger onPress={() => auth().signOut()}>
+            Logout
+          </Button>
+        )}
       </Container>
     </Container>
   );

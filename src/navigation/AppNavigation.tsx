@@ -1,23 +1,16 @@
 import React from 'react';
 import Scenes from '@scenes';
 import {createStackNavigator} from '@react-navigation/stack';
-import auth from '@react-native-firebase/auth';
+import {useAppSelector} from '@store';
 type Props = {};
 
 const AppNavigation = (_props: Props) => {
   const Stack = createStackNavigator();
-  const [userData, setUserData] = React.useState<any>(null);
-
-  React.useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(user => {
-      setUserData(user);
-    });
-    return subscriber;
-  }, []);
+  const userData = useAppSelector(state => state.user);
 
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      {!userData?.displayName && (
+      {!userData?.name && (
         <Stack.Screen name="CreateProfile" component={Scenes.CreateProfile} />
       )}
       <Stack.Screen name="Home" component={Scenes.HomeScene} />

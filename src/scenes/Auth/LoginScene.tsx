@@ -15,9 +15,15 @@ const LoginScene = (_props: Props) => {
     setLoading(true);
     setError('');
     const {email, password}: any = infoRef?.current?.getInfo();
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
     auth()
       .signInWithEmailAndPassword(email, password)
       .catch(err => {
+        console.log({err});
         if (err.code === 'auth/wrong-password') {
           setError('That password is invalid!');
         } else if (err.code === 'auth/user-not-found') {
@@ -29,6 +35,7 @@ const LoginScene = (_props: Props) => {
               } else if (err.code === 'auth/weak-password') {
                 setError('Password must be at least 6 characters');
               }
+              console.log({errr});
             });
         }
       })

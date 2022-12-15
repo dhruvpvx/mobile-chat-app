@@ -37,8 +37,11 @@ const UserImageView = (_props: Props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress} style={styles.imageView}>
-        <AppSvg.DefaultImage />
-        <RoundImage size={100} source={{uri: userData.image_url}} />
+        {!userData?.image_url ? (
+          <AppSvg.DefaultImage />
+        ) : (
+          <RoundImage size={100} source={{uri: userData.image_url}} />
+        )}
         <AppSvg.PencilIcon />
       </TouchableOpacity>
     </View>
