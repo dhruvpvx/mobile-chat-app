@@ -1,6 +1,8 @@
 export type MessageType = {
   id: number;
-  left: boolean;
   message: string;
-  sent_at: Date;
+  message_status: string;
+  sent_by: string;
+  sent_to: string;
+  createdAt: Date;
 };
