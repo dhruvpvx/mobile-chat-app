@@ -6,6 +6,7 @@ import storage from '@react-native-firebase/storage';
 import {useAppDispatch, useAppSelector} from '@store';
 import firebase from '@firebase';
 import Actions from '@store/Actions';
+import {AppSvg} from '@res';
 type Props = {};
 
 const UserImageView = (_props: Props) => {
@@ -36,7 +37,9 @@ const UserImageView = (_props: Props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress} style={styles.imageView}>
+        <AppSvg.DefaultImage />
         <RoundImage size={100} source={{uri: userData.image_url}} />
+        <AppSvg.PencilIcon />
       </TouchableOpacity>
     </View>
   );

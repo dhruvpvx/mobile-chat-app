@@ -5,6 +5,8 @@ import MessageTip from './MessageTip';
 import GoogleSvg from './GoogleSvg';
 import ProfileIcon from './ProfileIcon';
 import BackIcon from './BackIcon';
+import PencilIcon from './PencilIcon';
+import DefaultImage from './DefaultImage';
 
 export default {
   BackArrow,
@@ -14,4 +16,6 @@ export default {
   GoogleSvg,
   ProfileIcon,
   BackIcon,
+  PencilIcon,
+  DefaultImage,
 };
