@@ -52,9 +52,13 @@ const App = (_props: Props) => {
   return (
     <SafeAreaProvider>
       <StatusBar />
-      <NavigationContainer>
-        {userData.id ? <AppNavigation /> : <Scenes.LoginScene />}
-      </NavigationContainer>
+      {userData.splash ? (
+        <Scenes.SplashScene />
+      ) : (
+        <NavigationContainer>
+          {userData.id ? <AppNavigation /> : <Scenes.LoginScene />}
+        </NavigationContainer>
+      )}
     </SafeAreaProvider>
   );
 };

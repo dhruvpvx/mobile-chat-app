@@ -9,6 +9,7 @@ export interface UserState {
   gender: string;
   id: string;
   image_url?: string;
+  splash?: boolean;
 }
 
 const initialState: UserState = {
@@ -16,6 +17,7 @@ const initialState: UserState = {
   email: '',
   gender: '',
   id: '',
+  splash: true,
 };
 
 export const userSlice = createSlice({
@@ -28,6 +30,7 @@ export const userSlice = createSlice({
       state.id = action.payload.id;
       state.gender = action.payload.gender;
       state.image_url = action.payload.image_url;
+      state.splash = false;
     },
   },
 });
