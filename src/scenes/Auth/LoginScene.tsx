@@ -46,6 +46,9 @@ const LoginScene = (_props: Props) => {
 
   return (
     <Container center>
+      <View style={styles.appTitle}>
+        <Text style={AppFonts.extraBold(54, 'LIGHT_GREEEN')}>Mobile Chat</Text>
+      </View>
       <EmailPassword ref={infoRef} />
       <View style={styles.errorView}>
         <Text style={AppFonts.regular(14, 'GOOGLE_RED')}>{error}</Text>
@@ -64,6 +67,13 @@ const LoginScene = (_props: Props) => {
 export default LoginScene;
 
 const styles = StyleSheet.create({
+  appTitle: {
+    width: '100%',
+    aspectRatio: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '-40%',
+  },
   errorView: {
     width: '70%',
     textAlign: 'center',
